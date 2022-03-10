@@ -7,7 +7,7 @@ from dovehawk.subject import Subject
 
 def instantiate_population(n=1) -> List[Subject]:
     """Instantiates a population of n subjects"""
-    population = [Subject(random.randint(0, 1)) for _ in range(n)]
+    population = [Subject(random.randint(0, 1), 0) for _ in range(n)]
     return population
 
 
@@ -16,20 +16,20 @@ def interact(a, b):
         pass
     else:
         if a is None:
-            b.energy += 1
+            b.energy += 2
         elif b is None:
-            a.energy += 1
+            a.energy += 2
         else:
             if a.type == 0 and b.type == 0:
-                a.energy += 0.5
-                b.energy += 0.5
-            elif a.type == 1 and b.type == 1:
-                a.energy -= 0.5
-                b.energy -= 0.5
-            elif a.type == 0 and b.type == 1:
-                b.energy += 1
-            else:
                 a.energy += 1
+                b.energy += 1
+            elif a.type == 1 and b.type == 1:
+                a.energy -= 1
+                b.energy -= 1
+            elif a.type == 0 and b.type == 1:
+                b.energy += 2
+            else:
+                a.energy += 2
 
 
 def food_hunt(population, num_of_foods) -> List[Subject]:
@@ -52,8 +52,28 @@ def food_hunt(population, num_of_foods) -> List[Subject]:
     for group in food_share:
         interact(group[0], group[1])
 
+    for item in population:
+        print(str(item.type) + ", " + str(item.energy) + "---")
+
     return population
 
 
 def pass_night(population):
+    new_doves = 0
+    new_hawks = 0
+
+    population[:] = [subject for subject in population if subject.energy > 0]
+    for item in population:
+        if item.energy == 2:
+            if item.type == 0:
+                new_doves += 1
+            else:
+                new_hawks += 1
+        item.energy = 0
+
+    for _ in range(new_doves):
+        population.append(Subject(0, 0))
+    for _ in range(new_hawks):
+        population.append(Subject(1, 0))
+
     return population

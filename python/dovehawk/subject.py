@@ -7,7 +7,7 @@ class Subject:
 
     subject_count = 0  # total number of subjects
 
-    def __init__(self, kind=0, food=1):
+    def __init__(self, kind=0, food=0):
         self.type = kind
         self.energy = food
         Subject.subject_count += 1
