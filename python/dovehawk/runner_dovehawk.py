@@ -1,4 +1,4 @@
-from dovehawk.subject import Subject
+from python.dovehawk.subject import Subject
 from dovehawk.survivability_methods import instantiate_population, food_hunt, interact, pass_night
 
 population = instantiate_population(6)

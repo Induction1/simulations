@@ -2,7 +2,7 @@ import math
 import random
 from typing import List
 
-from dovehawk.subject import Subject
+from python.dovehawk.subject import Subject
 
 
 def instantiate_population(n=1) -> List[Subject]:
