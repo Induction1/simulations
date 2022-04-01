@@ -1,13 +1,9 @@
-from python.dovehawk.subject import Subject
-from dovehawk.survivability_methods import instantiate_population, food_hunt, interact, pass_night
+import matplotlib.pyplot as plt
+import numpy as np
 
-population = instantiate_population(6)
+from dovehawk.survivability_methods import instantiate_population, run_simulation
+from dovehawk.simulation_graphs import histogram_view, stacked_area
 
-for item in population:
-    print(str(item.type) + ", ")
+#histogram_view(100, 1000, 100)
 
-food_hunt(population, 2)
-pass_night(population)
-
-for item in population:
-    print(item.type)
+stacked_area(50, 500, 200)

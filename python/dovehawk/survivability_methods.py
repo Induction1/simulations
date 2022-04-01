@@ -52,9 +52,6 @@ def food_hunt(population, num_of_foods) -> List[Subject]:
     for group in food_share:
         interact(group[0], group[1])
 
-    for item in population:
-        print(str(item.type) + ", " + str(item.energy) + "---")
-
     return population
 
 
@@ -77,3 +74,30 @@ def pass_night(population):
         population.append(Subject(1, 0))
 
     return population
+
+
+def population_statistics(population):
+    total = 0
+    counter = 0
+    for subject in population:
+        total += 1
+        if subject.type == 0:
+            counter += 1
+    return [total, counter, total - counter]
+
+
+def run_simulation(population, times, num_of_foods):
+    return_arr = [[0] * (times + 1) for i in range(3)]
+    statistics_zero = population_statistics(population)
+    return_arr[0][0] = statistics_zero[0]
+    return_arr[1][0] = statistics_zero[1]
+    return_arr[2][0] = statistics_zero[2]
+    for i in range(times):
+        food_hunt(population, num_of_foods)
+        pass_night(population)
+        statistics_zero = population_statistics(population)
+        return_arr[0][i + 1] = statistics_zero[0]
+        return_arr[1][i + 1] = statistics_zero[1]
+        return_arr[2][i + 1] = statistics_zero[2]
+
+    return return_arr

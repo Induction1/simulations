@@ -5,9 +5,21 @@ class Subject:
         - Kind 1 = Hawk
     """
 
-    subject_count = 0  # total number of subjects
-
-    def __init__(self, kind=0, food=0):
-        self.type = kind
+    def __init__(self, food=0):
         self.energy = food
-        Subject.subject_count += 1
+
+
+class Dove(Subject):
+    def __init__(self, food=0):
+        super().__init__()
+        self.kind = 0
+
+    def interact(self, other):
+        if other is not None:
+            
+
+
+class Hawk(Subject):
+    def __init__(self, food=0):
+        super().__init__()
+        self.kind = 1
