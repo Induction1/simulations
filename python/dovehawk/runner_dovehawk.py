@@ -6,4 +6,4 @@ from dovehawk.simulation_graphs import histogram_view, stacked_area
 
 #histogram_view(100, 1000, 100)
 
-stacked_area(50, 500, 200)
+stacked_area(20, 100, 300)
